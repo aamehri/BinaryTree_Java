@@ -1,3 +1,5 @@
+import javax.xml.crypto.Data;
+
 public class BinaryTree {
     private DataNode root;
 
@@ -101,6 +103,42 @@ public class BinaryTree {
                 else
                     return search(k, node.getRight());
         }
+    }
+
+    private int maxValue(DataNode node)
+    {
+        DataNode temp = node;
+        while (temp.getRight() != null)
+            temp = temp.getRight();
+        return temp.getKey();
+    }
+
+    public void delete(int k)
+    {
+        root = delete(k, root);
+    }
+    private DataNode delete(int k, DataNode node)
+    {
+        if (node == null)
+            return null;
+        else if (node.getKey() == k)
+        {
+            if (node.getRight() == null)
+                node = node.getLeft();
+            else if (node.getLeft() == null)
+                node = node.getRight();
+            else
+            {
+                int temp = maxValue(node.getLeft());
+                node.setKey(temp);
+                node.setLeft(delete(temp, node.getLeft()));
+            }
+        }
+        else if (node.getKey() > k)
+            node.setLeft(delete(k, node.getLeft()));
+        else
+            node.setRight(delete(k, node.getRight()));
+        return node;
     }
 
 }

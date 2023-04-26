@@ -19,5 +19,9 @@ public class TestBinaryTree {
             System.out.println("Record found!");
         else
             System.out.println("Record not found!");
+
+        br1.delete(60);
+        System.out.println("In Order after deletion:\n" + br1.inOrder());
+
     }
 }

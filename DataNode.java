@@ -38,6 +38,11 @@ public class DataNode {
         this.data = data;
         return this;
     }
+    public DataNode setKey(int key)
+    {
+        this.key = key;
+        return this;
+    }
     public DataNode setLeft(DataNode left)
     {
         this.left = left;
